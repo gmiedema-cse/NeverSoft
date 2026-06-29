@@ -237,7 +237,7 @@ var FIRMWARE_PATH    = 'firmware/NS_application_OTA_v3.2.img';
 var RAW_BASE         = 'https://raw.githubusercontent.com/' + GITHUB_REPO + '/main';
 var FIRMWARE_URL     = RAW_BASE + '/' + FIRMWARE_PATH;
 var REQUIRED_VERSION = '3.2';
-var FIRMWARE_BUILD_DATE = [0x26, 0x06, 0x29];  // June 26 2026 = 26177
+var FIRMWARE_BUILD_DATE = [0x26, 0x06, 0x29];  // June 26 2029 = 26177
 
 var NUS_SERVICE = '6e400001-b5a3-f393-e0a9-e50e24dcca9e';
 var NUS_RX      = '6e400002-b5a3-f393-e0a9-e50e24dcca9e';
@@ -728,7 +728,7 @@ function buildLogCsv(buf, customerName, capName, fwVersion, fwJulian) {
   lines.push(customerName);
   lines.push(ts);
   lines.push('v'+verStr+'  '+julian);
-  lines.push('Day,Pressure Mode,Daily High Pressure (PSI),Average High Pressure (PSI),Battery Voltage (V),Pumping Cycles,Charging Cycles');
+  lines.push('Day,Pressure Mode,Daily High Pressure (PSI),Average High Pressure (PSI),Battery Voltage (V),Pumping Time (min),Charging Time (min)');
 
   var records=buf.slice(14);
   var n=Math.floor(records.length/16);
@@ -755,9 +755,12 @@ function buildLogCsv(buf, customerName, capName, fwVersion, fwJulian) {
       var aveHiPsi  = pressToPsi(r[4]);
       var battV     = battToV(r[7]);
       var b11=r[11], b12=r[12], b13=r[13];
-      var pumpRun   = ((b11<<8)|b12)>>4;
-      var chrgCyc   = ((b12&0x07)<<8)|b13;
-      lines.push(dayNum+','+mode+','+dayHiPsi+','+aveHiPsi+','+battV+','+pumpRun+','+chrgCyc);
+      var pumpCycles = ((b11<<8)|b12)>>4;
+      var chrgCycles = ((b12&0x07)<<8)|b13;
+      // Each pump cycle = 30 s = 0.5 min; each charge cycle = 5 min
+      var pumpMin  = (pumpCycles * 0.5).toFixed(1);
+      var chrgMin  = (chrgCycles * 5).toFixed(0);
+      lines.push(dayNum+','+mode+','+dayHiPsi+','+aveHiPsi+','+battV+','+pumpMin+','+chrgMin);
     }
   }
   return lines.join('\r\n');

@@ -352,7 +352,8 @@ function decodeAdc(bytes) {
   var kpa    = psi * 6.89476;
   var chargePct = Math.max(0, Math.min(100, (battV - 3.2) / 0.8 * 100));
   // Panel %: -0.1V = 0%, 5.0V = 100%
-  var panelPct = Math.max(0, Math.min(100, (panelV + 0.1) / 5.1 * 100));
+  // Panel %: -0.1V = 0%, 4.0V = 100%, clamped
+  var panelPct = Math.max(0, Math.min(100, (panelV + 0.1) / 4.1 * 100));
   var out = { battV: battV, panelV: panelV, panelPct: panelPct, chargePct: chargePct, psi: psi, kpa: kpa, time: null, mode: null, pumpFail: null };
   if (bytes.length >= 5) {
     var tick = (bytes[3] << 8) | bytes[4];

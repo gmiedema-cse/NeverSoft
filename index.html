@@ -14,54 +14,20 @@
       --line:#E5DFD4;--accent:#1B3A78;--accent-h:#14305F;--accent-s:#1B3A781A;
       --good:#2A6A4A;--good-s:#2A6A4A15;--warn:#7A5800;--warn-s:#7A580015;
       --danger:#9B1C1C;--danger-s:#9B1C1C15;
-      --font-d:'Fraunces','Georgia',serif;
-      --font-b:'Geist',system-ui,sans-serif;
-      --font-m:'Geist Mono',ui-monospace,monospace;
+      --font-d:'Fraunces','Georgia',serif;--font-b:'Geist',system-ui,sans-serif;--font-m:'Geist Mono',ui-monospace,monospace;
       --r:12px;--rl:20px;
     }
     *,*::before,*::after{box-sizing:border-box}
-    html,body{
-      margin:0;padding:0;
-      background:var(--bg);color:var(--ink);
-      font-family:var(--font-b);font-size:16px;line-height:1.5;
-      -webkit-font-smoothing:antialiased;
-      min-height:100svh;
-      /* prevent text resize on orientation change */
-      -webkit-text-size-adjust:100%;text-size-adjust:100%;
-    }
-    .app{
-      max-width:600px;
-      margin:0 auto;
-      /* safe-area insets for notch/home-bar phones */
-      padding: 20px max(16px, env(safe-area-inset-left))
-               env(safe-area-inset-bottom, 24px)
-               max(16px, env(safe-area-inset-right));
-      padding-top: max(20px, env(safe-area-inset-top));
-      padding-bottom: max(48px, calc(env(safe-area-inset-bottom) + 24px));
-    }
-
-    /* Header */
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:var(--font-b);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100svh;-webkit-text-size-adjust:100%}
+    .app{max-width:640px;margin:0 auto;padding:20px max(16px,env(safe-area-inset-left)) max(48px,calc(env(safe-area-inset-bottom)+24px)) max(16px,env(safe-area-inset-right));padding-top:max(20px,env(safe-area-inset-top))}
     header{text-align:center;margin-bottom:20px}
     .brand{display:flex;flex-direction:column;align-items:center;gap:6px}
-    /* Logo scales down gracefully on narrow screens */
-    .brand-logo{width:auto;max-width:min(280px, 80vw);max-height:112px}
+    .brand-logo{width:auto;max-width:min(280px,80vw);max-height:112px}
     .brand-text{font-family:var(--font-d);font-weight:500;font-size:clamp(24px,6vw,32px);letter-spacing:-.02em;color:var(--ink);line-height:1}
     .brand-text em{font-style:italic;color:var(--accent)}
-
-    /* Sections */
     section{background:var(--bg-card);border:1px solid var(--line);border-radius:var(--rl);padding:16px 18px;margin-bottom:12px}
     .section-label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:10px}
-
-    /* Buttons — minimum 44px touch target */
-    .btn{
-      font-family:var(--font-b);font-size:15px;font-weight:500;
-      border-radius:var(--r);border:1px solid transparent;cursor:pointer;
-      transition:transform .08s,background .15s,border-color .15s,color .15s;
-      -webkit-tap-highlight-color:transparent;
-      padding:12px 16px;
-      min-height:44px;
-      touch-action:manipulation;
-    }
+    .btn{font-family:var(--font-b);font-size:15px;font-weight:500;border-radius:var(--r);border:1px solid transparent;cursor:pointer;transition:transform .08s,background .15s,border-color .15s,color .15s;-webkit-tap-highlight-color:transparent;padding:12px 16px;min-height:44px;touch-action:manipulation}
     .btn:active:not(:disabled){transform:translateY(1px)}.btn:disabled{opacity:.4;cursor:not-allowed}
     .btn-primary{background:var(--accent);color:var(--bg);border-color:var(--accent)}
     .btn-primary:hover:not(:disabled){background:var(--accent-h);border-color:var(--accent-h)}
@@ -69,42 +35,18 @@
     .btn-ghost:hover:not(:disabled){border-color:var(--ink-soft);color:var(--ink)}
     .btn-warn{background:transparent;color:var(--accent);border-color:var(--accent)}
     .btn-warn:hover:not(:disabled){background:var(--accent-s)}
-    .btn-block{width:100%;padding:14px}
-    /* Small buttons still hit 44px height via line-height */
-    .btn-sm{padding:8px 12px;font-size:13px;min-height:36px}
-
-    /* Banner */
+    .btn-block{width:100%;padding:14px}.btn-sm{padding:8px 12px;font-size:13px;min-height:36px}
     .banner{background:var(--accent-s);border:1px solid var(--accent);border-radius:var(--r);padding:12px 14px;margin-bottom:14px;font-size:14px;line-height:1.55}
     .banner h2{margin:0 0 5px;font-size:13px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.05em}
     .banner ol{margin:0;padding-left:18px}.banner li+li{margin-top:3px}.banner strong{color:var(--accent)}
-
-    /* Cap list */
     .cap-list{display:flex;flex-direction:column;gap:8px;margin-top:12px}
     .cap-empty{font-size:14px;color:var(--ink-mute);font-style:italic;padding:6px 0}
-
-    /* Cap row — two-row layout:
-       Row 1: name + pills + status
-       Row 2: blink + remove buttons right-aligned */
-    .cap-row{
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      padding:14px 16px;
-      background:var(--bg);border:1px solid var(--line);
-      border-radius:var(--r);transition:border-color .15s,background .15s;
-    }
+    .cap-row{display:flex;flex-direction:column;gap:8px;padding:14px 16px;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);transition:border-color .15s,background .15s}
     .cap-row.needs-update{border-color:var(--warn);background:var(--warn-s)}
-
-    /* Info area */
-    .cap-info{display:flex;flex-direction:column;gap:4px;min-width:0;}
+    .cap-info{display:flex;flex-direction:column;gap:4px;min-width:0}
     .cap-name{font-family:var(--font-m);font-size:13px;font-weight:500;color:var(--ink);word-break:break-word;overflow-wrap:anywhere}
     .cap-meta{display:flex;gap:6px;flex-wrap:wrap}
-    .cap-pill{
-      font-size:11px;font-family:var(--font-m);
-      padding:3px 8px;border-radius:20px;
-      border:1px solid var(--line);color:var(--ink-soft);background:var(--bg-card);
-      white-space:nowrap;line-height:1.4;
-    }
+    .cap-pill{font-size:11px;font-family:var(--font-m);padding:3px 8px;border-radius:20px;border:1px solid var(--line);color:var(--ink-soft);background:var(--bg-card);white-space:nowrap;line-height:1.4}
     .cap-pill.mode{border-color:var(--accent);background:var(--accent-s);color:var(--accent);font-weight:600}
     .cap-pill.fw-ok{border-color:var(--good);background:var(--good-s);color:var(--good)}
     .cap-pill.fw-bad{border-color:var(--warn);background:var(--warn-s);color:var(--warn);font-weight:600}
@@ -114,78 +56,35 @@
     .cap-status[data-tone=working]{color:var(--accent)}
     .cap-status[data-tone=working]::after{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--accent);margin-left:5px;animation:pulse 1s ease infinite;vertical-align:middle}
     @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-
-    /* Button row inside cap — second grid row, spans both columns */
-    .cap-btn-row{
-      grid-column:1/3;
-      display:flex;gap:8px;justify-content:flex-end;
-      margin-top:2px;
-    }
-
-    /* Blink button */
-    .btn-blink{
-      padding:8px 16px;font-size:13px;font-weight:600;
-      border-radius:var(--r);background:var(--accent-s);
-      border:1.5px solid var(--accent);color:var(--accent);
-      cursor:pointer;font-family:var(--font-b);transition:all .15s;
-      white-space:nowrap;flex-shrink:0;
-      -webkit-tap-highlight-color:transparent;
-      touch-action:manipulation;min-height:40px;
-    }
-    .btn-blink:hover{background:var(--accent);color:var(--bg)}
-    .btn-blink:active{transform:scale(.96)}
-
-    .cap-controls{
-      display:flex;justify-content:space-between;align-items:center;
-      margin-top:10px;font-size:13px;color:var(--ink-mute);
-      flex-wrap:wrap;gap:6px;
-    }
-    .cap-controls a{color:var(--accent);text-decoration:none;cursor:pointer;font-weight:500;padding:4px 0;touch-action:manipulation}
-    .cap-controls a+a{margin-left:10px}
-
-    /* Mode grid — always 2x2 on phone, 4-up only when there's room */
+    .cap-btn-row{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+    .btn-blink{padding:8px 16px;font-size:13px;font-weight:600;border-radius:var(--r);background:var(--accent-s);border:1.5px solid var(--accent);color:var(--accent);cursor:pointer;font-family:var(--font-b);transition:all .15s;white-space:nowrap;flex-shrink:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;min-height:40px}
+    .btn-blink:hover{background:var(--accent);color:var(--bg)}.btn-blink:active{transform:scale(.96)}
     .mode-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
     @media(min-width:440px){.mode-grid{grid-template-columns:repeat(4,1fr)}}
-    .mode-btn{
-      padding:14px 6px;background:transparent;border:1.5px solid var(--line);
-      border-radius:var(--r);cursor:pointer;font-family:var(--font-b);
-      transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:3px;
-      -webkit-tap-highlight-color:transparent;touch-action:manipulation;
-      min-height:64px;
-    }
+    .mode-btn{padding:14px 6px;background:transparent;border:1.5px solid var(--line);border-radius:var(--r);cursor:pointer;font-family:var(--font-b);transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:3px;-webkit-tap-highlight-color:transparent;touch-action:manipulation;min-height:64px}
     .mode-btn:hover:not(:disabled){border-color:var(--accent);background:var(--accent-s)}
     .mode-btn:disabled{opacity:.4;cursor:not-allowed}
     .mode-btn.is-selected{background:var(--accent);border-color:var(--accent);color:var(--bg)}
     .mode-btn-name{font-family:var(--font-d);font-weight:500;font-size:clamp(15px,4vw,18px);letter-spacing:-.01em}
     .mode-btn-psi{font-size:12px;color:var(--ink-mute)}
     .mode-btn.is-selected .mode-btn-psi{color:rgba(245,241,235,.75)}
-    /* Go / Quit row stacks on very narrow screens */
     .apply-row{display:grid;grid-template-columns:2fr 1fr;gap:8px;margin-top:12px}
     @media(max-width:320px){.apply-row{grid-template-columns:1fr}}
-
-    /* Firmware card — allow title to wrap on small screens */
     .fw-card{display:flex;align-items:flex-start;gap:10px;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;margin-bottom:12px}
     .fw-card.is-good{border-color:var(--good);background:var(--good-s)}
     .fw-card.is-error{border-color:var(--danger);background:var(--danger-s)}
     .fw-card-icon{font-size:20px;flex-shrink:0;line-height:1.4}
     .fw-card-body{flex:1;min-width:0}
-    .fw-card-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px;
-      /* allow wrapping on phones instead of hidden overflow */
-      white-space:normal;overflow-wrap:anywhere;word-break:break-word;}
+    .fw-card-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:2px;white-space:normal;overflow-wrap:anywhere;word-break:break-word}
     .fw-card.is-good .fw-card-title{color:var(--good)}.fw-card.is-error .fw-card-title{color:var(--danger)}
     .fw-card-meta{font-size:12px;color:var(--ink-mute);font-family:var(--font-m)}
-
-    /* OTA progress bar */
-    .ota-progress{display:none;margin-top:12px}
-    .ota-progress.is-visible{display:block}
+    .ota-progress{display:none;margin-top:12px}.ota-progress.is-visible{display:block}
     .ota-bar-wrap{height:8px;border-radius:4px;background:var(--line);overflow:hidden;margin-bottom:6px}
     .ota-bar-fill{height:100%;border-radius:4px;background:var(--accent);width:0%;transition:width .3s ease}
     .ota-bar-fill.ind{width:35%;animation:ind 1.3s ease-in-out infinite}
     @keyframes ind{0%{transform:translateX(-200%)}100%{transform:translateX(400%)}}
     .ota-bar-label{font-size:12px;color:var(--ink-mute);font-family:var(--font-m);line-height:1.4}
     .ota-bar-label.good{color:var(--good)}.ota-bar-label.error{color:var(--danger)}
-
-    /* OTA toggle */
     .toggle-row{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:12px}
     .toggle-label{font-size:14px;color:var(--ink-soft);line-height:1.4;flex:1;min-width:0}
     .toggle-label strong{color:var(--ink);font-weight:600;display:block;margin-bottom:2px}
@@ -195,14 +94,35 @@
     .toggle-switch input:checked ~ .toggle-track{background:var(--accent)}
     .toggle-thumb{position:absolute;left:3px;top:3px;width:22px;height:22px;background:#fff;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,.25);transition:transform .2s;pointer-events:none}
     .toggle-switch input:checked ~ .toggle-track .toggle-thumb{transform:translateX(20px)}
-
+    /* Status tiles */
+    .status-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+    .status-tile{border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;background:var(--bg)}
+    .status-tile.good{border-color:var(--good);background:var(--good-s)}
+    .status-tile.warn{border-color:var(--warn);background:var(--warn-s)}
+    .status-tile.danger{border-color:var(--danger);background:var(--danger-s)}
+    .status-tile-label{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-mute);margin-bottom:4px}
+    .status-tile-value{font-size:20px;font-weight:700;color:var(--ink);font-family:var(--font-m);line-height:1.1}
+    .status-tile.good .status-tile-value{color:var(--good)}
+    .status-tile.warn .status-tile-value{color:var(--warn)}
+    .status-tile.danger .status-tile-value{color:var(--danger)}
+    .status-tile-sub{font-size:11px;color:var(--ink-mute);margin-top:3px}
+    /* Per-cap status rows inside status section */
+    .cap-status-row{padding:10px 14px;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);margin-bottom:8px}
+    .cap-status-row-name{font-family:var(--font-m);font-size:13px;font-weight:600;color:var(--ink);margin-bottom:8px}
+    /* Log section */
+    .log-input{width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:var(--r);font-size:15px;font-family:var(--font-b);background:var(--bg);color:var(--ink);outline:none;margin-bottom:12px;-webkit-appearance:none}
+    .log-input:focus{border-color:var(--accent)}
+    .log-progress{display:none;margin-bottom:12px}.log-progress.is-visible{display:block}
+    .log-bar-wrap{height:7px;border-radius:4px;background:var(--line);overflow:hidden;margin-bottom:6px}
+    .log-bar-fill{height:100%;border-radius:4px;background:var(--accent);width:0%;transition:width .3s}
+    .log-bar-label{font-size:12px;color:var(--ink-mute);font-family:var(--font-m)}
+    .log-bar-label.good{color:var(--good)}.log-bar-label.error{color:var(--danger)}
     .unsupported{background:var(--accent-s);border:1px solid var(--accent);color:var(--ink);padding:12px 14px;border-radius:var(--r);font-size:14px;margin-bottom:12px;line-height:1.55}
     .unsupported strong{display:block;margin-bottom:3px;color:var(--accent)}
   </style>
 </head>
 <body>
 <main class="app">
-
   <header>
     <div class="brand">
       <img class="brand-logo" src="logo.png" alt="CSE Marine"
@@ -210,17 +130,14 @@
       <span class="brand-text" id="brandText" style="display:none">CSE <em>Marine</em></span>
     </div>
   </header>
-
   <div class="unsupported" id="unsupportedBanner" style="display:none">
-    <strong>Web Bluetooth not supported.</strong>
-    Open in Chrome or Edge on Mac, Windows, or Android.
+    <strong>Web Bluetooth not supported.</strong> Open in Chrome or Edge on Mac, Windows, or Android.
   </div>
-
   <div class="banner">
     <h2>Setup</h2>
     <ol>
       <li>Install caps in the boat. <strong>This starts a 10-minute pairing window.</strong></li>
-      <li>Tap <strong>+ Add cap</strong> — the picker stays open so you can add multiple caps. Each cap blinks its LEDs when connected and selected, and its firmware version is checked automatically.</li>
+      <li>Tap <strong>+ Add cap</strong> — the picker stays open to add multiple caps. Each cap blinks on connect and its firmware version is checked automatically.</li>
     </ol>
   </div>
 
@@ -229,15 +146,11 @@
     <div class="section-label">Caps</div>
     <button class="btn btn-primary" id="findBtn">+ Add cap</button>
     <div class="cap-list" id="capList"></div>
-
   </section>
 
   <!-- PRESSURE MODE -->
   <section>
-    <div class="section-label">
-      Pressure mode
-      <span style="font-size:11px;color:var(--ink-mute);text-transform:none;letter-spacing:0;font-weight:400;margin-left:6px">(tap again to deselect)</span>
-    </div>
+    <div class="section-label">Pressure mode <span style="font-size:11px;color:var(--ink-mute);text-transform:none;letter-spacing:0;font-weight:400;margin-left:6px">(tap again to deselect)</span></div>
     <div class="mode-grid">
       <button class="mode-btn" data-level="1"><span class="mode-btn-name">Mode 1</span><span class="mode-btn-psi">2.0 PSI</span></button>
       <button class="mode-btn" data-level="2"><span class="mode-btn-name">Mode 2</span><span class="mode-btn-psi">2.5 PSI</span></button>
@@ -247,6 +160,26 @@
     <div class="apply-row">
       <button class="btn btn-primary btn-block" id="programBtn" disabled>Go</button>
       <button class="btn btn-warn btn-block" id="quitBtn" disabled>Quit all</button>
+    </div>
+  </section>
+
+  <!-- CAP STATUS -->
+  <section>
+    <div class="section-label">Cap status</div>
+    <p style="margin:0 0 12px;font-size:14px;color:var(--ink-soft)">Reads live data from all connected caps simultaneously.</p>
+    <button class="btn btn-ghost btn-block" id="statusBtn" disabled>Read status</button>
+    <div id="statusResults"></div>
+  </section>
+
+  <!-- LOG PULL -->
+  <section>
+    <div class="section-label">Pull log</div>
+    <label style="font-size:14px;font-weight:600;color:var(--ink);display:block;margin-bottom:6px">Customer name</label>
+    <input class="log-input" id="logCustomerName" type="text" placeholder="e.g. John Smith">
+    <button class="btn btn-ghost btn-block" id="logBtn" disabled>Pull log from all caps</button>
+    <div class="log-progress" id="logProgress">
+      <div class="log-bar-wrap"><div class="log-bar-fill" id="logBarFill"></div></div>
+      <div class="log-bar-label" id="logBarLabel"></div>
     </div>
   </section>
 
@@ -281,35 +214,59 @@
 </main>
 <script>
 /* ===========================================================================
- * CSE Marine -- Pressure Mode + Firmware Update (OTA)
+ * CSE Marine -- Pressure Mode + Status + Log + OTA
  *
- * FIRMWARE CONFIG
- * Update FIRMWARE_PATH and REQUIRED_VERSION when new firmware is released.
+ * FIRMWARE CONFIG -- update when releasing new firmware.
  * =========================================================================*/
 var GITHUB_REPO      = 'gmiedema-cse/CSE-Marine';
 var FIRMWARE_PATH    = 'firmware/NS_application_OTA_v3.2.img';
 var RAW_BASE         = 'https://raw.githubusercontent.com/' + GITHUB_REPO + '/main';
 var FIRMWARE_URL     = RAW_BASE + '/' + FIRMWARE_PATH;
-var REQUIRED_VERSION = '3.2';   // hardcoded -- caps below this get flagged
-// Build date of the firmware in BCD (YY, MM, DD) -- update when releasing new firmware
-// e.g. [0x26, 0x06, 0x04] = June 4, 2026
+var REQUIRED_VERSION = '3.2';
 var FIRMWARE_BUILD_DATE = [0x26, 0x06, 0x19];  // June 19 2026 = 26170
 
 var NUS_SERVICE = '6e400001-b5a3-f393-e0a9-e50e24dcca9e';
 var NUS_RX      = '6e400002-b5a3-f393-e0a9-e50e24dcca9e';
 var NUS_TX      = '6e400003-b5a3-f393-e0a9-e50e24dcca9e';
+var MODE_LABELS = {1:{name:'Mode 1',psi:'2.0'},2:{name:'Mode 2',psi:'2.5'},3:{name:'Mode 3',psi:'3.0'},4:{name:'Mode 4',psi:'3.5'}};
 
-var MODE_LABELS = {
-  1:{name:'Mode 1',psi:'2.0'}, 2:{name:'Mode 2',psi:'2.5'},
-  3:{name:'Mode 3',psi:'3.0'}, 4:{name:'Mode 4',psi:'3.5'},
-};
-
-if (!navigator.bluetooth) {
-  document.getElementById('unsupportedBanner').style.display = 'block';
+// Returns the best available display name with the 4-digit suffix prominent.
+// Chrome sometimes returns just "CSE_Marine" without the suffix, so we also
+// try to extract a 4-char identifier from the device ID (BLE address).
+function capSuffix(cap) {
+  var name = cap.name || '';
+  // Try last 4 chars of name first
+  var fromName = name.slice(-4);
+  if (/^[A-F0-9]{4}$/i.test(fromName) && name.length > 4) return fromName.toUpperCase();
+  // Fall back to last 4 hex chars of the device ID (address)
+  if (cap.device && cap.device.id) {
+    var id = cap.device.id.replace(/[^A-F0-9]/gi, '');
+    if (id.length >= 4) return id.slice(-4).toUpperCase();
+  }
+  return null;
 }
 
+function capFullName(cap) {
+  var name = cap.name || '';
+  var sfx  = capSuffix(cap);
+  if (!sfx) return name;
+  // If name already ends with the suffix, use as-is
+  if (name.toUpperCase().endsWith(sfx)) return name;
+  // Otherwise append the suffix so we always have CSE_Marine_XXXX
+  return name + '_' + sfx;
+}
+
+function capDisplayName(cap) {
+  var full = capFullName(cap);
+  var sfx  = capSuffix(cap);
+  if (sfx) return sfx + ' — ' + full;
+  return full;
+}
+
+if (!navigator.bluetooth) document.getElementById('unsupportedBanner').style.display = 'block';
+
 /* -- State --------------------------------------------------------------- */
-var caps         = new Map();
+var caps          = new Map();
 var selectedLevel = null;
 var otaEnabled    = true;
 var otaImageBytes = null;
@@ -317,17 +274,14 @@ var firmwareReady = false;
 var addingCaps    = false;
 var requiredVersion = REQUIRED_VERSION;
 
-/* -- Progress bar -------------------------------------------------------- */
+/* -- OTA progress -------------------------------------------------------- */
 function otaProgressShow(pct, label, cls) {
-  var wrap  = document.getElementById('otaProgress');
-  var fill  = document.getElementById('otaBarFill');
-  var lbl   = document.getElementById('otaBarLabel');
+  var wrap = document.getElementById('otaProgress');
+  var fill = document.getElementById('otaBarFill');
+  var lbl  = document.getElementById('otaBarLabel');
   wrap.classList.add('is-visible');
-  if (pct < 0) {
-    fill.classList.add('ind'); fill.style.width = '';
-  } else {
-    fill.classList.remove('ind'); fill.style.width = pct + '%';
-  }
+  if (pct < 0) { fill.classList.add('ind'); fill.style.width = ''; }
+  else { fill.classList.remove('ind'); fill.style.width = pct + '%'; }
   lbl.textContent = label || '';
   lbl.className = 'ota-bar-label' + (cls ? ' ' + cls : '');
 }
@@ -335,14 +289,11 @@ function otaProgressHide() {
   document.getElementById('otaProgress').classList.remove('is-visible');
   document.getElementById('otaBarFill').classList.remove('ind');
   document.getElementById('otaBarFill').style.width = '0%';
-  document.getElementById('otaBarLabel').textContent = '';
 }
 
 /* -- BLE write ----------------------------------------------------------- */
 function bleWrite(char, bytes) {
-  if (typeof char.writeValueWithResponse === 'function') {
-    return char.writeValueWithResponse(bytes);
-  }
+  if (typeof char.writeValueWithResponse === 'function') return char.writeValueWithResponse(bytes);
   return char.writeValue(bytes);
 }
 
@@ -352,78 +303,73 @@ function sendAndWait(cap, bytes, ms) {
   return new Promise(function(resolve) {
     if (!cap.rx) { resolve(null); return; }
     var done = function(d) { clearTimeout(t); resolve(d); };
-    var t = setTimeout(function() {
-      if (cap.pending === done) { cap.pending = null; resolve(null); }
-    }, ms);
+    var t = setTimeout(function() { if (cap.pending === done) { cap.pending = null; resolve(null); } }, ms);
     cap.pending = done;
-    bleWrite(cap.rx, bytes).catch(function() {
-      if (cap.pending === done) { cap.pending = null; clearTimeout(t); }
-      resolve(null);
-    });
+    bleWrite(cap.rx, bytes).catch(function() { if (cap.pending === done) { cap.pending = null; clearTimeout(t); } resolve(null); });
   });
 }
 
-/* -- Ordinal date conversion --------------------------------------------- */
-// Converts BCD-encoded YY, MM, DD to a compact ordinal date: YYYYY + DDD
-// where YYYY is the 4-digit year and DDD is the day-of-year (1-366).
-// e.g. June 26 2026 -> 26177  (year 2026, day 177)
+/* -- Ordinal date -------------------------------------------------------- */
 function bcdToOrdinal(yy, mm, dd) {
-  // Decode BCD: each byte is 0xYZ where Y=tens digit, Z=units digit
   var year  = 2000 + (((yy >> 4) & 0xF) * 10) + (yy & 0xF);
   var month = ((mm >> 4) & 0xF) * 10 + (mm & 0xF);
   var day   = ((dd >> 4) & 0xF) * 10 + (dd & 0xF);
-  // Days in each month (Jan=1..Dec=12), accounting for leap years
   var isLeap = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
-  var daysInMonth = [0,31,28+isLeap,31,30,31,30,31,31,30,31,30,31];
-  var dayOfYear = day;
-  for (var m = 1; m < month; m++) dayOfYear += daysInMonth[m];
-  // Format as YYddd where YY is last two digits of year
-  return (year % 100) * 1000 + dayOfYear;
+  var dim = [0,31,28+isLeap,31,30,31,30,31,31,30,31,30,31];
+  var doy = day;
+  for (var m = 1; m < month; m++) doy += dim[m];
+  return (year % 100) * 1000 + doy;
 }
 
 /* -- Version check ------------------------------------------------------- */
 function parseVersionReply(bytes) {
   var b = bytes;
-  while (b.length && (b[b.length-1] === 0x0D || b[b.length-1] === 0x0A || b[b.length-1] === 0)) {
-    b = b.slice(0, -1);
-  }
+  while (b.length && (b[b.length-1] === 0x0D || b[b.length-1] === 0x0A || b[b.length-1] === 0)) b = b.slice(0,-1);
   if (!b.length) return { version: null, julian: null };
   var nonPrint = Array.from(b).some(function(c) { return c < 0x20 || c > 0x7E; });
   if (b.length >= 5 && nonPrint) {
-    // Binary format: [YY, MM, DD, MAJOR, POINT, CR, LF]
-    var yy = b[0], mm = b[1], dd = b[2], major = b[3], point = b[4];
-    var julian = bcdToOrdinal(yy, mm, dd);
-    return { version: major + '.' + point, julian: julian };
+    var yy=b[0],mm=b[1],dd=b[2],major=b[3],point=b[4];
+    return { version: major+'.'+point, julian: bcdToOrdinal(yy,mm,dd) };
   }
   var txt = new TextDecoder().decode(b).trim();
   return { version: txt || null, julian: null };
 }
-
 function versionNeedsUpdate(capVer, required) {
-  if (!capVer) return true;
-  if (!required) return false;
-  var cv = capVer.split('.').map(Number);
-  var rv = required.split('.').map(Number);
+  if (!capVer) return true; if (!required) return false;
+  var cv = capVer.split('.').map(Number), rv = required.split('.').map(Number);
   if (cv[0] !== rv[0]) return cv[0] < rv[0];
   return cv[1] < rv[1];
 }
 
-function capFirmwareLabel(cap) {
-  if (cap.version === null) return null;  // not checked yet
-  var label = 'FW v' + cap.version;
-  if (cap.julian) label += ' (' + cap.julian + ')';
-  return label;
+/* -- 'a' response decode (v3.2 layout) ----------------------------------- */
+// [0]BATT [1]PANEL [2]SENSOR [3-4]time_tick_BE [5]TPLevel(mode) [6]day_hi [7]day_lo [8]PumpFailKnt
+function decodeAdc(bytes) {
+  if (!bytes || bytes.length < 3) return null;
+  var batt = bytes[0], panel = bytes[1], sensor = bytes[2];
+  var battV  = 0.04 * batt  - 0.1;
+  var panelV = 0.04 * panel - 0.1;
+  var psi    = sensor / 22.24194;
+  var kpa    = psi * 6.89476;
+  var chargePct = Math.max(0, Math.min(100, (battV - 3.2) / 0.8 * 100));
+  // Panel %: -0.1V = 0%, 5.0V = 100%
+  var panelPct = Math.max(0, Math.min(100, (panelV + 0.1) / 5.1 * 100));
+  var out = { battV: battV, panelV: panelV, panelPct: panelPct, chargePct: chargePct, psi: psi, kpa: kpa, time: null, mode: null, pumpFail: null };
+  if (bytes.length >= 5) {
+    var tick = (bytes[3] << 8) | bytes[4];
+    var secs = tick * 10;
+    var hh = Math.floor(secs/3600), rem = secs%3600, mm2 = Math.floor(rem/60), ss = rem%60;
+    out.time = hh.toString().padStart(2,'0')+':'+mm2.toString().padStart(2,'0')+':'+ss.toString().padStart(2,'0');
+  }
+  if (bytes.length >= 6) { var mode = bytes[5]; if (mode >= 1 && mode <= 4) out.mode = mode; }
+  if (bytes.length >= 9) { var pf = bytes[8]; out.pumpFail = pf >= 40 ? 0 : pf; }
+  return out;
 }
 
 async function readCapMode(cap) {
-  // Send 'a' to get analog data; byte 5 = current pressure mode (1-4)
-  var reply = await sendAndWait(cap, new Uint8Array([0x61]), 2000);
+  var reply = await sendAndWait(cap, new Uint8Array([0x61]), 3000);
   if (reply && reply.length >= 6) {
-    var mode = reply[5];
-    if (mode >= 1 && mode <= 4) {
-      cap.currentMode = mode;
-      renderCaps();
-    }
+    var d = decodeAdc(reply);
+    if (d && d.mode) { cap.currentMode = d.mode; renderCaps(); }
   }
 }
 
@@ -432,41 +378,27 @@ async function checkCapVersion(cap) {
   await sendAndWait(cap, new Uint8Array([0x62]), 1500);
   var reply = await sendAndWait(cap, new Uint8Array([0x76]), 2500);
   if (!reply || !reply.length) {
-    cap.needsUpdate = true;
-    cap.status = 'No firmware version reply';
-    cap.tone = 'update';
+    cap.needsUpdate = true; cap.status = 'No firmware version reply'; cap.tone = 'update';
   } else {
     var parsed = parseVersionReply(reply);
-    cap.version = parsed.version;
-    cap.julian  = parsed.julian;
+    cap.version = parsed.version; cap.julian = parsed.julian;
     cap.needsUpdate = versionNeedsUpdate(parsed.version, requiredVersion);
     cap.status = cap.needsUpdate ? 'Firmware update required' : 'Connected';
     cap.tone   = cap.needsUpdate ? 'update' : 'good';
   }
-  // Also read current mode
   await readCapMode(cap);
   renderCaps();
 }
 
 /* -- Cap management ------------------------------------------------------ */
 async function connectCap(device) {
-  var cap = {
-    id: device.id, name: device.name || '(unnamed)', device: device,
-    rx: null, tx: null, pending: null,
-
-    currentMode: null,   // set after successful programming
-    version: null, julian: null, needsUpdate: false,
-    status: 'Connecting...', tone: 'working',
-  };
-  caps.set(device.id, cap);
-  renderCaps();
-
+  var cap = { id:device.id, name:device.name||'(unnamed)', device:device, rx:null, tx:null, pending:null, currentMode:null, version:null, julian:null, needsUpdate:false, status:'Connecting...', tone:'working' };
+  caps.set(device.id, cap); renderCaps();
   device.addEventListener('gattserverdisconnected', function() {
-    cap.rx = null; cap.tx = null;
-    if (!cap.status.startsWith('OTA')) { cap.status = 'Connection lost'; cap.tone = 'warn'; }
+    cap.rx=null; cap.tx=null;
+    if (!cap.status.startsWith('OTA')) { cap.status='Connection lost'; cap.tone='warn'; }
     renderCaps();
   });
-
   try {
     var server  = await device.gatt.connect();
     var service = await server.getPrimaryService(NUS_SERVICE);
@@ -474,503 +406,474 @@ async function connectCap(device) {
     cap.tx = await service.getCharacteristic(NUS_TX);
     await cap.tx.startNotifications();
     cap.tx.addEventListener('characteristicvaluechanged', function(e) {
-      var v = e.target.value;
-      var b = new Uint8Array(v.buffer, v.byteOffset, v.byteLength);
-      if (cap.pending) { var r = cap.pending; cap.pending = null; r(b); }
+      var v=e.target.value, b=new Uint8Array(v.buffer,v.byteOffset,v.byteLength);
+      if (cap.pending) { var r=cap.pending; cap.pending=null; r(b); }
     });
-
-    // Blink LEDs on connect
-    cap.status = 'Identifying...'; cap.tone = 'working'; renderCaps();
+    cap.status='Identifying...'; cap.tone='working'; renderCaps();
     await bleWrite(cap.rx, new Uint8Array([0x62]));
-    await new Promise(function(r) { setTimeout(r, 300); });
-
-    if (otaEnabled) {
-      cap.status = 'Checking version...'; cap.tone = 'working'; renderCaps();
-      await checkCapVersion(cap);
-    } else {
-      cap.status = 'Connected'; cap.tone = 'good'; renderCaps();
-      await readCapMode(cap);
-    }
-  } catch(err) {
-    cap.status = 'Failed: ' + err.message; cap.tone = 'danger'; renderCaps();
-  }
+    await new Promise(function(r){setTimeout(r,300);});
+    if (otaEnabled) { cap.status='Checking version...'; cap.tone='working'; renderCaps(); await checkCapVersion(cap); }
+    else { cap.status='Connected'; cap.tone='good'; renderCaps(); await readCapMode(cap); }
+  } catch(err) { cap.status='Failed: '+err.message; cap.tone='danger'; renderCaps(); }
 }
 
 async function startAddingCaps() {
   if (addingCaps) return;
-  addingCaps = true; updateControls();
+  addingCaps=true; updateControls();
   while (addingCaps) {
     try {
-      var device = await navigator.bluetooth.requestDevice({
-        filters: [{ services: [NUS_SERVICE] }],
-        optionalServices: [NUS_SERVICE],
-      });
+      var device = await navigator.bluetooth.requestDevice({ filters:[{services:[NUS_SERVICE]}], optionalServices:[NUS_SERVICE] });
       if (!caps.has(device.id)) connectCap(device);
     } catch(err) { break; }
   }
-  addingCaps = false; updateControls();
+  addingCaps=false; updateControls();
 }
 
 async function removeCap(id) {
-  var cap = caps.get(id); if (!cap) return;
-  if (cap.rx && cap.device && cap.device.gatt && cap.device.gatt.connected) {
-    try { await bleWrite(cap.rx, new Uint8Array([0x71])); await new Promise(function(r){setTimeout(r,250);}); } catch(e){}
-  }
-  try { if (cap.device && cap.device.gatt && cap.device.gatt.connected) cap.device.gatt.disconnect(); } catch(e){}
+  var cap=caps.get(id); if (!cap) return;
+  if (cap.rx && cap.device?.gatt?.connected) { try { await bleWrite(cap.rx,new Uint8Array([0x71])); await new Promise(function(r){setTimeout(r,250);}); } catch(e){} }
+  try { if (cap.device?.gatt?.connected) cap.device.gatt.disconnect(); } catch(e){}
   caps.delete(id); renderCaps();
 }
 
 async function identifyCap(id) {
-  var cap = caps.get(id);
-  if (!cap || !cap.rx) return;
-  try { await bleWrite(cap.rx, new Uint8Array([0x62])); } catch(e){}
+  var cap=caps.get(id); if (!cap?.rx) return;
+  try { await bleWrite(cap.rx,new Uint8Array([0x62])); } catch(e){}
 }
 
 /* -- Render -------------------------------------------------------------- */
 function renderCaps() {
   var list = Array.from(caps.values());
   var capListEl = document.getElementById('capList');
-
-  if (!list.length) {
-    capListEl.innerHTML = '<div class="cap-empty">No caps yet -- tap + Add cap.</div>';
-    updateControls(); return;
-  }
-
-  capListEl.innerHTML = '';
+  if (!list.length) { capListEl.innerHTML='<div class="cap-empty">No caps yet -- tap + Add cap.</div>'; updateControls(); return; }
+  capListEl.innerHTML='';
   list.forEach(function(cap) {
-    var row = document.createElement('div');
-    row.className = 'cap-row' + (cap.needsUpdate ? ' needs-update' : '');
-
-    // Mode pill
-    var modePill = cap.currentMode !== null
-      ? '<span class="cap-pill mode">' + MODE_LABELS[cap.currentMode].name + ' ' + MODE_LABELS[cap.currentMode].psi + ' PSI</span>'
-      : '';
-
-    // Firmware pill
+    var row=document.createElement('div');
+    row.className='cap-row'+(cap.needsUpdate?' needs-update':'');
+    var modePill = cap.currentMode!==null ? '<span class="cap-pill mode">'+MODE_LABELS[cap.currentMode].name+' '+MODE_LABELS[cap.currentMode].psi+' PSI</span>' : '';
     var fwPill = '';
-    if (cap.version !== null) {
-      var fwLabel = 'v' + cap.version + (cap.julian ? ' • ' + cap.julian : '');
-      fwPill = '<span class="cap-pill ' + (cap.needsUpdate ? 'fw-bad' : 'fw-ok') + '">' + fwLabel + '</span>';
+    if (cap.version!==null) {
+      var fwLabel='v'+cap.version+(cap.julian?' \u2022 '+cap.julian:'');
+      fwPill='<span class="cap-pill '+(cap.needsUpdate?'fw-bad':'fw-ok')+'">'+fwLabel+'</span>';
     }
-
-    var metaHtml = (modePill || fwPill)
-      ? '<div class="cap-meta">' + modePill + fwPill + '</div>'
-      : '';
-
-    row.innerHTML =
-      '<div class="cap-info">' +
-        '<span class="cap-name"></span>' +
-        metaHtml +
-        '<span class="cap-status"></span>' +
-      '</div>' +
-      '<div class="cap-btn-row">' +
-        '<button class="btn-blink" data-id="' + cap.id + '">&#128267;&nbsp;Blink</button>' +
-        '<button class="btn btn-ghost btn-sm" data-remove="' + cap.id + '">Remove</button>' +
+    var metaHtml=(modePill||fwPill)?'<div class="cap-meta">'+modePill+fwPill+'</div>':'';
+    row.innerHTML='<div class="cap-info"><span class="cap-name"></span>'+metaHtml+'<span class="cap-status"></span></div>'+
+      '<div class="cap-btn-row">'+
+        '<button class="btn-blink" data-id="'+cap.id+'">&#128267;&nbsp;Blink</button>'+
+        '<button class="btn btn-ghost btn-sm" data-remove="'+cap.id+'">Remove</button>'+
       '</div>';
-
-    row.querySelector('.cap-name').textContent = cap.name;
-    var s = row.querySelector('.cap-status');
-    s.textContent = cap.status;
-    if (cap.tone) s.setAttribute('data-tone', cap.tone);
+    row.querySelector('.cap-name').textContent=capFullName(cap);
+    var s=row.querySelector('.cap-status'); s.textContent=cap.status; if(cap.tone) s.setAttribute('data-tone',cap.tone);
     capListEl.appendChild(row);
   });
-
   capListEl.querySelectorAll('.btn-blink').forEach(function(btn) {
-    btn.addEventListener('click', function(e) { e.preventDefault(); e.stopPropagation(); identifyCap(btn.dataset.id); });
+    btn.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();identifyCap(btn.dataset.id);});
   });
   capListEl.querySelectorAll('[data-remove]').forEach(function(btn) {
-    btn.addEventListener('click', function(e) { e.preventDefault(); e.stopPropagation(); removeCap(btn.dataset.remove); });
+    btn.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();removeCap(btn.dataset.remove);});
   });
-
   updateControls();
 }
 
 function updateControls() {
-  var list = Array.from(caps.values());
-  // All connected caps are always active -- no checkbox selection needed
-  var connCount      = list.filter(function(c) { return c.rx; }).length;
-  var updateCount    = list.filter(function(c) { return c.rx && c.needsUpdate; }).length;
+  var list=Array.from(caps.values());
+  var connCount=list.filter(function(c){return c.rx;}).length;
+  var updateCount=list.filter(function(c){return c.rx&&c.needsUpdate;}).length;
+  var findBtn=document.getElementById('findBtn'), programBtn=document.getElementById('programBtn');
+  var quitBtn=document.getElementById('quitBtn'), statusBtn=document.getElementById('statusBtn');
+  var logBtn=document.getElementById('logBtn');
+  findBtn.textContent=addingCaps?'Adding... (cancel in picker)':'+ Add cap';
+  quitBtn.disabled=list.length===0;
+  statusBtn.disabled=connCount===0;
+  logBtn.disabled=connCount===0;
+  var hasMode=selectedLevel!==null, hasOta=otaEnabled&&firmwareReady&&updateCount>0;
+  programBtn.disabled=!(connCount>0&&(hasMode||hasOta));
+  if (!connCount) { programBtn.textContent='Go'; return; }
+  var parts=[];
+  if (hasMode) parts.push('Program '+MODE_LABELS[selectedLevel].name);
+  if (hasOta)  parts.push('OTA '+updateCount+' cap'+(updateCount===1?'':'s'));
+  programBtn.textContent=parts.length?'Go: '+parts.join(' + '):'Go';
+}
 
-  var findBtn    = document.getElementById('findBtn');
-  var programBtn = document.getElementById('programBtn');
-  var quitBtn    = document.getElementById('quitBtn');
+/* -- Cap Status ---------------------------------------------------------- */
+async function readAllStatus() {
+  var list=Array.from(caps.values()).filter(function(c){return c.rx;});
+  if (!list.length) return;
+  var btn=document.getElementById('statusBtn');
+  btn.disabled=true; btn.textContent='Reading...';
+  var resultsEl=document.getElementById('statusResults');
+  resultsEl.innerHTML='';
 
-  findBtn.textContent = addingCaps ? 'Adding... (cancel in picker)' : '+ Add cap';
-  quitBtn.disabled = list.length === 0;
+  await Promise.all(list.map(async function(cap) {
+    var reply = await sendAndWait(cap, new Uint8Array([0x61]), 3000);
+    var d = reply ? decodeAdc(reply) : null;
+    // Update currentMode if we got one
+    if (d && d.mode && d.mode !== cap.currentMode) { cap.currentMode=d.mode; renderCaps(); }
 
-  var hasMode = selectedLevel !== null;
-  var hasOta  = otaEnabled && firmwareReady && updateCount > 0;
-  programBtn.disabled = !(connCount > 0 && (hasMode || hasOta));
+    var PRESS = {1:'2.0',2:'2.5',3:'3.0',4:'3.3'};
+    var block=document.createElement('div');
+    block.className='cap-status-row';
+    var nameDiv=document.createElement('div');
+    nameDiv.className='cap-status-row-name'; nameDiv.textContent=capDisplayName(cap); nameDiv.title=capFullName(cap);
+    block.appendChild(nameDiv);
 
-  if (!connCount) { programBtn.textContent = 'Go'; return; }
-  var parts = [];
-  if (hasMode) parts.push('Program ' + MODE_LABELS[selectedLevel].name);
-  if (hasOta)  parts.push('OTA ' + updateCount + ' cap' + (updateCount === 1 ? '' : 's'));
-  programBtn.textContent = parts.length ? 'Go: ' + parts.join(' + ') : 'Go';
+    if (!d) {
+      var err=document.createElement('div');
+      err.style.cssText='font-size:14px;color:var(--danger)';
+      err.textContent='No response from cap.';
+      block.appendChild(err);
+    } else {
+      var battTone=d.chargePct>=60?'good':d.chargePct>=30?'warn':'danger';
+      var pumpTone=d.pumpFail===null?'':d.pumpFail<=3?'good':'danger';
+      var pumpVal=d.pumpFail===null?'--':d.pumpFail<=3?'Good':'Run Diagnostics';
+      var pumpSub=d.pumpFail===null?'not reported':'fail count: '+d.pumpFail;
+      var grid=document.createElement('div'); grid.className='status-grid';
+      function tile(label,value,sub,tone){
+        var t=document.createElement('div'); t.className='status-tile'+(tone?' '+tone:'');
+        t.innerHTML='<div class="status-tile-label">'+label+'</div><div class="status-tile-value">'+value+'</div>'+(sub?'<div class="status-tile-sub">'+sub+'</div>':'');
+        return t;
+      }
+      grid.appendChild(tile('Battery',Math.round(d.chargePct)+'%',d.battV.toFixed(2)+' V',battTone));
+      grid.appendChild(tile('Solar Panel',Math.round(d.panelPct)+'%',d.panelV.toFixed(2)+' V',''));
+      grid.appendChild(tile('Pressure',d.psi.toFixed(2)+' PSI',d.kpa.toFixed(1)+' kPa',''));
+      grid.appendChild(tile('Day Started',d.time||'--','time since day start',''));
+      grid.appendChild(tile('Mode',d.mode?'Mode '+d.mode:'--',d.mode?PRESS[d.mode]+' PSI target':'',''));
+      grid.appendChild(tile('Pump Health',pumpVal,pumpSub,pumpTone));
+      block.appendChild(grid);
+    }
+    resultsEl.appendChild(block);
+  }));
+
+  btn.disabled=false; btn.textContent='Read status';
+}
+
+/* -- Log pull ------------------------------------------------------------ */
+var LOG_EXPECTED = 14 + 256 * 32;   // 8206 bytes (without 'd' marker)
+var logPulling   = false;
+
+async function pullAllLogs() {
+  var list=Array.from(caps.values()).filter(function(c){return c.rx;});
+  if (!list.length||logPulling) return;
+  logPulling=true;
+  var btn=document.getElementById('logBtn');
+  var fill=document.getElementById('logBarFill');
+  var label=document.getElementById('logBarLabel');
+  var progress=document.getElementById('logProgress');
+  btn.disabled=true;
+  progress.classList.add('is-visible');
+  fill.style.width='0%'; label.textContent='';
+
+  var customerName=(document.getElementById('logCustomerName').value.trim()||'Unknown Customer');
+
+  for (var i=0; i<list.length; i++) {
+    var cap=list[i];
+    label.textContent='Pulling log from '+capDisplayName(cap)+'... (cap '+(i+1)+' of '+list.length+')';
+
+    // Wake with 'v' first (safe, matches devtool)
+    await sendAndWait(cap, new Uint8Array([0x76]), 1000);
+    await new Promise(function(r){setTimeout(r,200);});
+
+    var buf=[];
+    var finished=false;
+    var startTime=Date.now();
+
+    var logHandler=function(e) {
+      var v=e.target.value;
+      var chunk=new Uint8Array(v.buffer,v.byteOffset,v.byteLength);
+      for (var j=0;j<chunk.length;j++) buf.push(chunk[j]);
+      var pct=Math.min(100,Math.round(buf.length/LOG_EXPECTED*100));
+      fill.style.width=pct+'%';
+      label.textContent=capDisplayName(cap)+': '+buf.length+' / '+LOG_EXPECTED+' bytes ('+pct+'%)';
+      if (buf.length>=LOG_EXPECTED) finished=true;
+      if (buf.length>0 && buf[buf.length-1]===0x64 && buf.length>=LOG_EXPECTED-10) finished=true;
+    };
+
+    cap.tx.addEventListener('characteristicvaluechanged',logHandler);
+    try { await bleWrite(cap.rx, new Uint8Array([0x72])); } catch(e){}  // 'r'
+
+    await new Promise(function(resolve){
+      var check=setInterval(function(){
+        if (finished||buf.length>=LOG_EXPECTED||Date.now()-startTime>35000) { clearInterval(check); resolve(); }
+      },250);
+    });
+
+    cap.tx.removeEventListener('characteristicvaluechanged',logHandler);
+
+    if (buf.length<14) {
+      label.className='log-bar-label error';
+      label.textContent=capDisplayName(cap)+': Failed — only '+buf.length+' bytes received.';
+    } else {
+      var csv=buildLogCsv(new Uint8Array(buf), customerName, capFullName(cap), cap.version, cap.julian);
+      downloadCsv(csv, capFullName(cap));
+      label.className='log-bar-label good';
+      label.textContent='Downloaded log for '+capDisplayName(cap);
+    }
+
+    // Small gap between caps
+    if (i<list.length-1) await new Promise(function(r){setTimeout(r,500);});
+  }
+
+  fill.style.width='100%';
+  if (list.length>1) { label.className='log-bar-label good'; label.textContent='All logs downloaded.'; }
+  btn.disabled=false; logPulling=false;
+}
+
+function buildLogCsv(buf, customerName, capName, fwVersion, fwJulian) {
+  var PRESS_DIV=22.24194, BATT_K=9.881/255.0;
+  function pressToPsi(raw){ return (raw/PRESS_DIV).toFixed(1); }
+  function battToV(raw)   { return (raw*BATT_K).toFixed(2); }
+
+  var hdr=buf.slice(0,14);
+  var yy=hdr[0],mm=hdr[1],dd=hdr[2];
+  var fw_major=hdr[5],fw_point=hdr[6],tplevel=hdr[7];
+  var julian=bcdToOrdinal(yy,mm,dd);
+  var verStr=fw_major+'.'+fw_point;
+
+  var now=new Date();
+  var ts=now.getFullYear()+
+    ('0'+(now.getMonth()+1)).slice(-2)+
+    ('0'+now.getDate()).slice(-2)+'_'+
+    ('0'+now.getHours()).slice(-2)+
+    ('0'+now.getMinutes()).slice(-2)+
+    ('0'+now.getSeconds()).slice(-2);
+
+  var lines=[];
+  lines.push(customerName);
+  lines.push(ts);
+  lines.push('v'+verStr+'  '+julian);
+  lines.push('Day,Pressure Mode,Daily High Pressure (PSI),Average High Pressure (PSI),Battery Voltage (V),Pumping Cycles,Charging Cycles');
+
+  var records=buf.slice(14);
+  var n=Math.floor(records.length/16);
+  var dayNum=0;
+
+  for (var i=0;i<n;i++) {
+    var r=records.slice(i*16,i*16+16);
+    dayNum++;
+
+    // Derive mode from TargtPressure byte (r[2])
+    var targRaw=r[2];
+    var mode=tplevel;
+    if (targRaw <= 50)       mode=1;
+    else if (targRaw <= 61)  mode=2;
+    else if (targRaw <= 70)  mode=3;
+    else if (targRaw > 70)   mode=4;
+
+    var dayHiPsi  = pressToPsi(r[3]);
+    var aveHiPsi  = pressToPsi(r[4]);
+    var battV     = battToV(r[7]);
+    var b11=r[11], b12=r[12], b13=r[13];
+    var pumpRun   = ((b11<<8)|b12)>>4;
+    var chrgCyc   = ((b12&0x07)<<8)|b13;
+
+    lines.push(dayNum+','+mode+','+dayHiPsi+','+aveHiPsi+','+battV+','+pumpRun+','+chrgCyc);
+  }
+  return lines.join('\r\n');
+}
+
+function downloadCsv(csv, capName) {
+  var safe=(capName||'log').replace(/[^a-z0-9_-]/gi,'_');
+  var now=new Date();
+  var ts=now.getFullYear()+('0'+(now.getMonth()+1)).slice(-2)+('0'+now.getDate()).slice(-2);
+  var filename='cse_log_'+safe+'_'+ts+'.csv';
+  var blob=new Blob([csv],{type:'text/csv'});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a'); a.href=url; a.download=filename; a.click();
+  URL.revokeObjectURL(url);
 }
 
 /* -- Go action ----------------------------------------------------------- */
 async function goAction() {
-  var sel = Array.from(caps.values()).filter(function(c) { return c.rx; });
+  var sel=Array.from(caps.values()).filter(function(c){return c.rx;});
   if (!sel.length) return;
+  var doMode=selectedLevel!==null;
+  var doOta=otaEnabled&&firmwareReady&&sel.some(function(c){return c.needsUpdate;});
+  if (!doMode&&!doOta) return;
+  document.getElementById('findBtn').disabled=true;
+  document.getElementById('programBtn').disabled=true;
+  document.getElementById('quitBtn').disabled=true;
+  document.querySelectorAll('.mode-btn').forEach(function(b){b.disabled=true;});
 
-  var doMode = selectedLevel !== null;
-  var doOta  = otaEnabled && firmwareReady && sel.some(function(c) { return c.needsUpdate; });
-  if (!doMode && !doOta) return;
-
-  document.getElementById('findBtn').disabled = true;
-  document.getElementById('programBtn').disabled = true;
-  document.getElementById('quitBtn').disabled = true;
-  document.querySelectorAll('.mode-btn').forEach(function(b) { b.disabled = true; });
-
-  // -- Step 1: Program pressure mode on all selected caps --
-  // IMPORTANT: 'p' must be sent as TWO separate BLE writes with a 50ms gap
-  // between them, matching how the PIC's command state machine reads bytes.
-  // A single 2-byte write is treated as an unknown command.
-  // Also wake the PIC first with 'v' so it is in its command loop.
   if (doMode) {
-    var m = MODE_LABELS[selectedLevel];
-    var digit = new Uint8Array([0x30 + selectedLevel]);  // '1'..'4'
-    sel.forEach(function(c) { c.status = 'Programming ' + m.name + '...'; c.tone = 'working'; });
+    var m=MODE_LABELS[selectedLevel];
+    var digit=new Uint8Array([0x30+selectedLevel]);
+    sel.forEach(function(c){c.status='Programming '+m.name+'...';c.tone='working';});
     renderCaps();
     await Promise.all(sel.map(async function(cap) {
       try {
-        // Wake PIC with 'v', drain any reply
-        await sendAndWait(cap, new Uint8Array([0x76]), 500);
-        await new Promise(function(r) { setTimeout(r, 150); });
-
-        // Send 'p' first, wait 50ms, then send the digit
-        // We can't use sendAndWait for 'p' since the reply comes after the digit
-        await bleWrite(cap.rx, new Uint8Array([0x70]));   // 'p'
-        await new Promise(function(r) { setTimeout(r, 50); });
-
-        // Now send digit and wait for ack
-        var ack = await sendAndWait(cap, digit, 3000);
-        if (!ack) {
-          cap.status = 'No reply -- PIC may be asleep'; cap.tone = 'warn';
-        } else if (ack[0] === 0x50) {
-          cap.currentMode = selectedLevel;
-          cap.status = m.name + ' programmed'; cap.tone = 'good';
-        } else if (ack[0] === 0x45) {
-          cap.status = 'Rejected'; cap.tone = 'warn';
-        } else {
-          cap.status = 'Unexpected reply (0x' + ack[0].toString(16) + ')'; cap.tone = 'warn';
-        }
-      } catch(err) {
-        cap.status = 'Write error: ' + err.message; cap.tone = 'danger';
-      }
+        await sendAndWait(cap,new Uint8Array([0x76]),500);
+        await new Promise(function(r){setTimeout(r,150);});
+        await bleWrite(cap.rx,new Uint8Array([0x70]));
+        await new Promise(function(r){setTimeout(r,50);});
+        var ack=await sendAndWait(cap,digit,3000);
+        if (!ack)              {cap.status='No reply';cap.tone='warn';}
+        else if(ack[0]===0x50){cap.currentMode=selectedLevel;cap.status=m.name+' programmed';cap.tone='good';}
+        else if(ack[0]===0x45){cap.status='Rejected';cap.tone='warn';}
+        else                  {cap.status='Unexpected reply (0x'+ack[0].toString(16)+')';cap.tone='warn';}
+      } catch(err){cap.status='Write error: '+err.message;cap.tone='danger';}
     }));
     renderCaps();
   }
 
-  // -- Step 2: OTA caps that need it --
   if (doOta) {
-    var otaSel = sel.filter(function(c) { return c.needsUpdate && c.rx; });
+    var otaSel=sel.filter(function(c){return c.needsUpdate&&c.rx;});
     if (otaSel.length) {
-      otaProgressShow(-1, 'Preparing OTA for ' + otaSel.length + ' cap' + (otaSel.length === 1 ? '' : 's') + '...');
-
-      if (!otaImageBytes) {
-        var ok = await downloadFirmware();
-        if (!ok) {
-          otaProgressHide();
-          document.getElementById('findBtn').disabled = false;
-          document.querySelectorAll('.mode-btn').forEach(function(b) { b.disabled = false; });
-          updateControls(); return;
-        }
-      }
-
-      var completed = 0;
+      otaProgressShow(-1,'Preparing OTA for '+otaSel.length+' cap'+(otaSel.length===1?'':'s')+'...');
+      if (!otaImageBytes) { var ok=await downloadFirmware(); if (!ok){otaProgressHide();document.getElementById('findBtn').disabled=false;document.querySelectorAll('.mode-btn').forEach(function(b){b.disabled=false;});updateControls();return;} }
       await Promise.all(otaSel.map(async function(cap) {
-        cap.status = 'OTA: priming...'; cap.tone = 'working'; renderCaps();
+        cap.status='OTA: priming...';cap.tone='working';renderCaps();
         try {
-          await sendAndWait(cap, new Uint8Array([0x62]), 1500);
-          cap.status = 'OTA: triggering...'; cap.tone = 'working'; renderCaps();
-          try { await bleWrite(cap.rx, new Uint8Array([0x4F])); } catch(e){}
-          cap.status = 'OTA: bootloader...'; cap.tone = 'working'; renderCaps();
-          await new Promise(function(r) { setTimeout(r, 1500); });
-          cap.status = 'OTA: flashing...'; cap.tone = 'working'; renderCaps();
-
-          var capPct = 0;
-          await runMdfu(cap, otaImageBytes, function(pct) {
-            capPct = pct;
-            cap.status = 'OTA: ' + pct + '%'; renderCaps();
-            // Average progress across all OTA caps
-            var total = otaSel.reduce(function(acc, c) {
-              var m2 = c.status.match(/OTA: (\d+)%/);
-              return acc + (m2 ? parseInt(m2[1]) : (c.status === 'OTA: flashing...' ? 0 : 100));
-            }, 0);
-            otaProgressShow(Math.round(total / otaSel.length),
-              'Flashing ' + otaSel.length + ' cap' + (otaSel.length === 1 ? '' : 's') + '...');
+          await sendAndWait(cap,new Uint8Array([0x62]),1500);
+          cap.status='OTA: triggering...';cap.tone='working';renderCaps();
+          try{await bleWrite(cap.rx,new Uint8Array([0x4F]));}catch(e){}
+          cap.status='OTA: bootloader...';cap.tone='working';renderCaps();
+          await new Promise(function(r){setTimeout(r,1500);});
+          cap.status='OTA: flashing...';cap.tone='working';renderCaps();
+          await runMdfu(cap,otaImageBytes,function(pct){
+            cap.status='OTA: '+pct+'%';renderCaps();
+            var total=otaSel.reduce(function(acc,c){var m2=c.status.match(/OTA: (\d+)%/);return acc+(m2?parseInt(m2[1]):0);},0);
+            otaProgressShow(Math.round(total/otaSel.length),'Flashing '+otaSel.length+' cap'+(otaSel.length===1?'':'s')+'...');
           });
-
-          completed++;
           await removeCap(cap.id);
-        } catch(err) {
-          cap.status = 'OTA failed: ' + err.message.slice(0, 50);
-          cap.tone = 'danger'; renderCaps();
-        }
+        } catch(err){cap.status='OTA failed: '+err.message.slice(0,50);cap.tone='danger';renderCaps();}
       }));
-
-      if (completed === otaSel.length) {
-        otaProgressShow(100, 'OTA complete -- reconnect caps and set pressure mode.', 'good');
-      } else {
-        otaProgressShow(0, 'OTA finished with errors (' + completed + '/' + otaSel.length + ' succeeded).', 'error');
-      }
+      otaProgressShow(100,'OTA complete -- reconnect caps and set pressure mode.','good');
     }
   }
-
-  document.getElementById('findBtn').disabled = false;
-  document.querySelectorAll('.mode-btn').forEach(function(b) { b.disabled = false; });
-  renderCaps(); updateControls();
+  document.getElementById('findBtn').disabled=false;
+  document.querySelectorAll('.mode-btn').forEach(function(b){b.disabled=false;});
+  renderCaps();updateControls();
 }
 
 async function quitAll() {
-  document.getElementById('findBtn').disabled = true;
-  document.getElementById('quitBtn').disabled = true;
-  await Promise.all(Array.from(caps.keys()).map(function(id) { return removeCap(id); }));
-  selectedLevel = null;
-  document.querySelectorAll('.mode-btn').forEach(function(b) { b.classList.remove('is-selected'); });
-  document.getElementById('findBtn').disabled = false;
+  document.getElementById('findBtn').disabled=true;
+  document.getElementById('quitBtn').disabled=true;
+  await Promise.all(Array.from(caps.keys()).map(function(id){return removeCap(id);}));
+  selectedLevel=null;
+  document.querySelectorAll('.mode-btn').forEach(function(b){b.classList.remove('is-selected');});
+  document.getElementById('findBtn').disabled=false;
   otaProgressHide();
 }
 
 /* -- MDFU protocol ------------------------------------------------------- */
-var MDFU = {
-  FRAME_START: 0x56, FRAME_END: 0x9E, ESCAPE: 0xCC,
-  CMD: { GET_CLIENT_INFO:1, START_TRANSFER:2, WRITE_CHUNK:3, GET_IMAGE_STATE:4, END_TRANSFER:5 },
-  STATUS: { SUCCESS: 1 },
-  checksum: function(d) {
-    var s = 0;
-    var p = (d.length % 2) ? new Uint8Array(Array.from(d).concat([0])) : d;
-    for (var i = 0; i < p.length; i += 2) s += (p[i+1] << 8) | p[i];
-    return (~s) & 0xffff;
-  },
-  escape: function(d) {
-    var o = [];
-    for (var i = 0; i < d.length; i++) {
-      if      (d[i] === 0x56) o.push(0xCC, 0xA9);
-      else if (d[i] === 0x9E) o.push(0xCC, 0x61);
-      else if (d[i] === 0xCC) o.push(0xCC, 0x33);
-      else o.push(d[i]);
-    }
-    return new Uint8Array(o);
-  },
-  unescape: function(d) {
-    var o = [], esc = false;
-    for (var i = 0; i < d.length; i++) {
-      if (esc) {
-        if      (d[i] === 0xA9) o.push(0x56);
-        else if (d[i] === 0x61) o.push(0x9E);
-        else if (d[i] === 0x33) o.push(0xCC);
-        esc = false;
-      } else if (d[i] === 0xCC) { esc = true; }
-      else o.push(d[i]);
-    }
-    return new Uint8Array(o);
-  },
-  buildFrame: function(p) {
-    var c = this.checksum(p);
-    var pl = new Uint8Array(Array.from(p).concat([c & 0xff, (c >> 8) & 0xff]));
-    var esc = this.escape(pl);
-    var out = new Uint8Array(1 + esc.length + 1);
-    out[0] = this.FRAME_START; out.set(esc, 1); out[out.length-1] = this.FRAME_END;
-    return out;
-  },
-  parseFrame: function(f) {
-    var pl = this.unescape(f.slice(1, -1));
-    var d  = pl.slice(0, -2);
-    var rc = pl[pl.length-2] | (pl[pl.length-1] << 8);
-    if (rc !== this.checksum(d)) throw new Error('CRC mismatch');
-    return d;
-  },
-  buildCmd: function(seq, cmd, data, sync) {
-    data = data || new Uint8Array();
-    var out = new Uint8Array(2 + data.length);
-    out[0] = seq | (sync ? 0x80 : 0); out[1] = cmd; out.set(data, 2);
-    return out;
-  },
-  parseStatus: function(b) {
-    return { seq: b[0] & 0x1f, resend: !!(b[0] & 0x40), status: b[1], data: b.slice(2) };
-  },
+var MDFU={
+  FRAME_START:0x56,FRAME_END:0x9E,ESCAPE:0xCC,
+  CMD:{GET_CLIENT_INFO:1,START_TRANSFER:2,WRITE_CHUNK:3,GET_IMAGE_STATE:4,END_TRANSFER:5},
+  STATUS:{SUCCESS:1},
+  checksum:function(d){var s=0;var p=(d.length%2)?new Uint8Array(Array.from(d).concat([0])):d;for(var i=0;i<p.length;i+=2)s+=(p[i+1]<<8)|p[i];return(~s)&0xffff;},
+  escape:function(d){var o=[];for(var i=0;i<d.length;i++){if(d[i]===0x56)o.push(0xCC,0xA9);else if(d[i]===0x9E)o.push(0xCC,0x61);else if(d[i]===0xCC)o.push(0xCC,0x33);else o.push(d[i]);}return new Uint8Array(o);},
+  unescape:function(d){var o=[],esc=false;for(var i=0;i<d.length;i++){if(esc){if(d[i]===0xA9)o.push(0x56);else if(d[i]===0x61)o.push(0x9E);else if(d[i]===0x33)o.push(0xCC);esc=false;}else if(d[i]===0xCC)esc=true;else o.push(d[i]);}return new Uint8Array(o);},
+  buildFrame:function(p){var c=this.checksum(p);var pl=new Uint8Array(Array.from(p).concat([c&0xff,(c>>8)&0xff]));var esc=this.escape(pl);var out=new Uint8Array(1+esc.length+1);out[0]=this.FRAME_START;out.set(esc,1);out[out.length-1]=this.FRAME_END;return out;},
+  parseFrame:function(f){var pl=this.unescape(f.slice(1,-1));var d=pl.slice(0,-2);var rc=pl[pl.length-2]|(pl[pl.length-1]<<8);if(rc!==this.checksum(d))throw new Error('CRC mismatch');return d;},
+  buildCmd:function(seq,cmd,data,sync){data=data||new Uint8Array();var out=new Uint8Array(2+data.length);out[0]=seq|(sync?0x80:0);out[1]=cmd;out.set(data,2);return out;},
+  parseStatus:function(b){return{seq:b[0]&0x1f,resend:!!(b[0]&0x40),status:b[1],data:b.slice(2)};},
 };
+function FrameReceiver(){this._buf=[];this._res=null;this._rej=null;this._t=null;}
+FrameReceiver.prototype.feed=function(bytes){for(var i=0;i<bytes.length;i++)this._buf.push(bytes[i]);this._try();};
+FrameReceiver.prototype.next=function(ms){var self=this;return new Promise(function(res,rej){self._res=res;self._rej=rej;self._t=setTimeout(function(){self._res=null;self._rej=null;rej(new Error('Frame timeout'));},ms||8000);self._try();});};
+FrameReceiver.prototype._try=function(){if(!this._res)return;var s=this._buf.indexOf(MDFU.FRAME_START);if(s===-1)return;for(var i=s+1;i<this._buf.length;i++){if(this._buf[i]===MDFU.FRAME_END&&this._buf[i-1]!==MDFU.ESCAPE){var frame=new Uint8Array(this._buf.splice(0,i+1));clearTimeout(this._t);var r=this._res;this._res=null;this._rej=null;r(frame);return;}}};
 
-function FrameReceiver() { this._buf = []; this._res = null; this._rej = null; this._t = null; }
-FrameReceiver.prototype.feed = function(bytes) {
-  for (var i = 0; i < bytes.length; i++) this._buf.push(bytes[i]);
-  this._try();
-};
-FrameReceiver.prototype.next = function(ms) {
-  var self = this;
-  return new Promise(function(res, rej) {
-    self._res = res; self._rej = rej;
-    self._t = setTimeout(function() { self._res=null; self._rej=null; rej(new Error('Frame timeout')); }, ms||8000);
-    self._try();
-  });
-};
-FrameReceiver.prototype._try = function() {
-  if (!this._res) return;
-  var s = this._buf.indexOf(MDFU.FRAME_START);
-  if (s === -1) return;
-  for (var i = s+1; i < this._buf.length; i++) {
-    if (this._buf[i] === MDFU.FRAME_END && this._buf[i-1] !== MDFU.ESCAPE) {
-      var frame = new Uint8Array(this._buf.splice(0, i+1));
-      clearTimeout(this._t);
-      var r = this._res; this._res = null; this._rej = null; r(frame); return;
-    }
-  }
-};
-
-async function runMdfu(cap, imageBytes, onProgress) {
-  var receiver = new FrameReceiver();
-  var nh = function(e) {
-    var v = e.target.value;
-    receiver.feed(new Uint8Array(v.buffer, v.byteOffset, v.byteLength));
-  };
-  cap.tx.addEventListener('characteristicvaluechanged', nh);
-  var seq = 0, RETRIES = 5;
-
-  async function sendCmd(cmd, data, sync, ms) {
-    data = data || new Uint8Array(); ms = ms || 10000;
-    for (var attempt = 0; attempt <= RETRIES; attempt++) {
-      var frame = MDFU.buildFrame(MDFU.buildCmd(seq, cmd, data, sync));
-      for (var off = 0; off < frame.length; off += 20) {
-        await bleWrite(cap.rx, frame.slice(off, Math.min(off+20, frame.length)));
-      }
+async function runMdfu(cap,imageBytes,onProgress){
+  var receiver=new FrameReceiver();
+  var nh=function(e){var v=e.target.value;receiver.feed(new Uint8Array(v.buffer,v.byteOffset,v.byteLength));};
+  cap.tx.addEventListener('characteristicvaluechanged',nh);
+  var seq=0,RETRIES=5;
+  async function sendCmd(cmd,data,sync,ms){
+    data=data||new Uint8Array();ms=ms||10000;
+    for(var attempt=0;attempt<=RETRIES;attempt++){
+      var frame=MDFU.buildFrame(MDFU.buildCmd(seq,cmd,data,sync));
+      for(var off=0;off<frame.length;off+=20)await bleWrite(cap.rx,frame.slice(off,Math.min(off+20,frame.length)));
       var sp;
-      try { var sf = await receiver.next(ms); sp = MDFU.parseStatus(MDFU.parseFrame(sf)); }
-      catch(e) { if (attempt < RETRIES) continue; throw e; }
-      if (sp.resend) { if (attempt < RETRIES) continue; throw new Error('Too many resends'); }
-      if (sp.status !== MDFU.STATUS.SUCCESS) throw new Error('MDFU error ' + sp.status);
-      seq = (seq+1) & 0x1f; return sp;
+      try{var sf=await receiver.next(ms);sp=MDFU.parseStatus(MDFU.parseFrame(sf));}
+      catch(e){if(attempt<RETRIES)continue;throw e;}
+      if(sp.resend){if(attempt<RETRIES)continue;throw new Error('Too many resends');}
+      if(sp.status!==MDFU.STATUS.SUCCESS)throw new Error('MDFU error '+sp.status);
+      seq=(seq+1)&0x1f;return sp;
     }
   }
-
-  try {
-    var info = await sendCmd(MDFU.CMD.GET_CLIENT_INFO, new Uint8Array(), true, 5000);
-    var bufSize = 64;
-    for (var i = 0; i < info.data.length;) {
-      var t = info.data[i], l = info.data[i+1];
-      if (t===2 && l>=2) bufSize = info.data[i+2] | (info.data[i+3] << 8);
-      i += 2 + l;
+  try{
+    var info=await sendCmd(MDFU.CMD.GET_CLIENT_INFO,new Uint8Array(),true,5000);
+    var bufSize=64;
+    for(var i=0;i<info.data.length;){var t=info.data[i],l=info.data[i+1];if(t===2&&l>=2)bufSize=info.data[i+2]|(info.data[i+3]<<8);i+=2+l;}
+    await sendCmd(MDFU.CMD.START_TRANSFER,new Uint8Array(),false,5000);
+    for(var off=0;off<imageBytes.length;off+=bufSize){
+      await sendCmd(MDFU.CMD.WRITE_CHUNK,imageBytes.slice(off,off+bufSize),false,15000);
+      onProgress(Math.min(Math.round(((off+bufSize)/imageBytes.length)*100),99));
     }
-    await sendCmd(MDFU.CMD.START_TRANSFER, new Uint8Array(), false, 5000);
-    for (var off = 0; off < imageBytes.length; off += bufSize) {
-      await sendCmd(MDFU.CMD.WRITE_CHUNK, imageBytes.slice(off, off+bufSize), false, 15000);
-      onProgress(Math.min(Math.round(((off+bufSize)/imageBytes.length)*100), 99));
-    }
-    var state = await sendCmd(MDFU.CMD.GET_IMAGE_STATE, new Uint8Array(), false, 10000);
-    if (state.data[0] !== 1) throw new Error('Image invalid (state=' + state.data[0] + ')');
-    await sendCmd(MDFU.CMD.END_TRANSFER, new Uint8Array(), false, 10000);
+    var state=await sendCmd(MDFU.CMD.GET_IMAGE_STATE,new Uint8Array(),false,10000);
+    if(state.data[0]!==1)throw new Error('Image invalid (state='+state.data[0]+')');
+    await sendCmd(MDFU.CMD.END_TRANSFER,new Uint8Array(),false,10000);
     onProgress(100);
-  } finally {
-    cap.tx.removeEventListener('characteristicvaluechanged', nh);
-  }
+  }finally{cap.tx.removeEventListener('characteristicvaluechanged',nh);}
 }
 
 /* -- Firmware fetch ------------------------------------------------------ */
-function fwState(state, title, meta) {
-  var card = document.getElementById('fw-card');
-  var icon = document.getElementById('fw-icon');
-  var titleEl = document.getElementById('fw-title');
-  var metaEl  = document.getElementById('fw-meta');
-  var refetch = document.getElementById('fw-refetchBtn');
-  card.className = 'fw-card' + (state ? ' is-'+state : '');
-  icon.textContent = state==='good' ? '\u2705' : state==='error' ? '\u274C' : '\u23F3';
-  titleEl.textContent = title;
-  metaEl.textContent  = meta || '';
-  refetch.style.display = (state==='error'||state==='good') ? '' : 'none';
+function fwState(state,title,meta){
+  var card=document.getElementById('fw-card'),icon=document.getElementById('fw-icon');
+  var titleEl=document.getElementById('fw-title'),metaEl=document.getElementById('fw-meta');
+  var refetch=document.getElementById('fw-refetchBtn');
+  card.className='fw-card'+(state?' is-'+state:'');
+  icon.textContent=state==='good'?'\u2705':state==='error'?'\u274C':'\u23F3';
+  titleEl.textContent=title;metaEl.textContent=meta||'';
+  refetch.style.display=(state==='error'||state==='good')?'':'none';
 }
 
-async function fetchFirmware() {
-  fwState('loading', 'Checking firmware...', '');
-  otaImageBytes = null; firmwareReady = false; updateControls();
-  try {
-    var head = await fetch(FIRMWARE_URL, { method: 'HEAD' });
-    if (!head.ok) {
-      fwState('error',
-        head.status===404 ? 'Firmware file not found' : 'Fetch failed (HTTP '+head.status+')',
-        FIRMWARE_URL); return;
-    }
-    var filename = FIRMWARE_PATH.split('/').pop();
-    // Derive ordinal date from FIRMWARE_PATH filename if it contains a date,
-    // otherwise compute from REQUIRED_VERSION release date if known.
-    // For now show the version; Julian date comes from the cap's 'v' reply.
-    var fwJulian = bcdToOrdinal(FIRMWARE_BUILD_DATE[0], FIRMWARE_BUILD_DATE[1], FIRMWARE_BUILD_DATE[2]);
-    fwState('good', filename + '  v' + REQUIRED_VERSION + '  •  ' + fwJulian, 'Ready -- downloads when Go is tapped');
-    firmwareReady = true; updateControls();
-  } catch(err) {
-    fwState('error', 'Firmware check failed', err.message);
-  }
+async function fetchFirmware(){
+  fwState('loading','Checking firmware...','');
+  otaImageBytes=null;firmwareReady=false;updateControls();
+  try{
+    var head=await fetch(FIRMWARE_URL,{method:'HEAD'});
+    if(!head.ok){fwState('error',head.status===404?'Firmware file not found':'Fetch failed (HTTP '+head.status+')',FIRMWARE_URL);return;}
+    var filename=FIRMWARE_PATH.split('/').pop();
+    var fwJulian=bcdToOrdinal(FIRMWARE_BUILD_DATE[0],FIRMWARE_BUILD_DATE[1],FIRMWARE_BUILD_DATE[2]);
+    fwState('good',filename+'  v'+REQUIRED_VERSION+'  \u2022  '+fwJulian,'Ready -- downloads when Go is tapped');
+    firmwareReady=true;updateControls();
+  }catch(err){fwState('error','Firmware check failed',err.message);}
 }
 
-async function downloadFirmware() {
-  fwState('loading', 'Downloading firmware...', '');
-  try {
-    var res = await fetch(FIRMWARE_URL);
-    if (!res.ok) throw new Error('HTTP '+res.status);
-    otaImageBytes = new Uint8Array(await res.arrayBuffer());
-    var filename = FIRMWARE_PATH.split('/').pop();
-    fwState('good',
-      filename + '  v' + REQUIRED_VERSION + '  •  ' + bcdToOrdinal(FIRMWARE_BUILD_DATE[0], FIRMWARE_BUILD_DATE[1], FIRMWARE_BUILD_DATE[2]),
-      'Downloaded ' + new Date().toLocaleTimeString());
+async function downloadFirmware(){
+  fwState('loading','Downloading firmware...','');
+  try{
+    var res=await fetch(FIRMWARE_URL);
+    if(!res.ok)throw new Error('HTTP '+res.status);
+    otaImageBytes=new Uint8Array(await res.arrayBuffer());
+    var filename=FIRMWARE_PATH.split('/').pop();
+    var fwJulian=bcdToOrdinal(FIRMWARE_BUILD_DATE[0],FIRMWARE_BUILD_DATE[1],FIRMWARE_BUILD_DATE[2]);
+    fwState('good',filename+'  v'+REQUIRED_VERSION+'  \u2022  '+fwJulian,'Downloaded '+new Date().toLocaleTimeString());
     return true;
-  } catch(err) {
-    fwState('error', 'Download failed', err.message); return false;
-  }
+  }catch(err){fwState('error','Download failed',err.message);return false;}
 }
 
 /* -- Button wiring ------------------------------------------------------- */
-document.getElementById('findBtn').addEventListener('click', startAddingCaps);
-document.getElementById('programBtn').addEventListener('click', goAction);
-document.getElementById('quitBtn').addEventListener('click', quitAll);
-
-document.querySelectorAll('.mode-btn').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    var level = Number(btn.dataset.level);
-    if (selectedLevel === level) {
-      selectedLevel = null;
-      document.querySelectorAll('.mode-btn').forEach(function(b) { b.classList.remove('is-selected'); });
-    } else {
-      selectedLevel = level;
-      document.querySelectorAll('.mode-btn').forEach(function(b) { b.classList.toggle('is-selected', b===btn); });
-    }
+document.getElementById('findBtn').addEventListener('click',startAddingCaps);
+document.getElementById('programBtn').addEventListener('click',goAction);
+document.getElementById('quitBtn').addEventListener('click',quitAll);
+document.getElementById('statusBtn').addEventListener('click',readAllStatus);
+document.getElementById('logBtn').addEventListener('click',pullAllLogs);
+document.getElementById('fw-refetchBtn').addEventListener('click',function(){otaImageBytes=null;firmwareReady=false;fetchFirmware();});
+document.querySelectorAll('.mode-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var level=Number(btn.dataset.level);
+    if(selectedLevel===level){selectedLevel=null;document.querySelectorAll('.mode-btn').forEach(function(b){b.classList.remove('is-selected');});}
+    else{selectedLevel=level;document.querySelectorAll('.mode-btn').forEach(function(b){b.classList.toggle('is-selected',b===btn);});}
     updateControls();
   });
 });
-document.getElementById('fw-refetchBtn').addEventListener('click', function() {
-  otaImageBytes=null; firmwareReady=false; fetchFirmware();
-});
-
-/* -- OTA toggle ---------------------------------------------------------- */
-document.getElementById('otaToggle').addEventListener('change', function() {
-  otaEnabled = this.checked;
-  document.getElementById('otaBody').style.display = otaEnabled ? '' : 'none';
-  if (otaEnabled) {
-    // Re-check version on all connected caps when OTA is turned back on
-    caps.forEach(function(cap) {
-      if (cap.rx) {
-        cap.status = 'Checking version...'; cap.tone = 'working'; renderCaps();
-        checkCapVersion(cap);
-      }
-    });
-  } else {
-    // Clear update flags
-    caps.forEach(function(cap) {
-      if (cap.rx) { cap.needsUpdate=false; cap.status='Connected'; cap.tone='good'; }
-    });
-    renderCaps();
-  }
+document.getElementById('otaToggle').addEventListener('change',function(){
+  otaEnabled=this.checked;
+  document.getElementById('otaBody').style.display=otaEnabled?'':'none';
+  if(otaEnabled){caps.forEach(async function(cap){if(cap.rx){cap.status='Checking version...';cap.tone='working';renderCaps();await checkCapVersion(cap);}});}
+  else{caps.forEach(function(cap){if(cap.rx){cap.needsUpdate=false;cap.status='Connected';cap.tone='good';}});renderCaps();}
   updateControls();
 });
 
 /* -- Init ---------------------------------------------------------------- */
 fetchFirmware();
 renderCaps();
-
-window.addEventListener('beforeunload', function() {
-  caps.forEach(function(cap) {
-    try { if (cap.rx&&cap.device&&cap.device.gatt&&cap.device.gatt.connected) bleWrite(cap.rx,new Uint8Array([0x71])); } catch(e){}
-    try { if (cap.device&&cap.device.gatt&&cap.device.gatt.connected) cap.device.gatt.disconnect(); } catch(e){}
+window.addEventListener('beforeunload',function(){
+  caps.forEach(function(cap){
+    try{if(cap.rx&&cap.device?.gatt?.connected)bleWrite(cap.rx,new Uint8Array([0x71]));}catch(e){}
+    try{if(cap.device?.gatt?.connected)cap.device.gatt.disconnect();}catch(e){}
   });
 });
 </script>

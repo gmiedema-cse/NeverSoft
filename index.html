@@ -18,7 +18,7 @@
       --r:12px;--rl:20px;
     }
     *,*::before,*::after{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:var(--font-b);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100svh;-webkit-text-size-adjust:100%}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:var(--font-b);font-size:18px;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100svh;-webkit-text-size-adjust:100%}
     .app{max-width:640px;margin:0 auto;padding:20px max(16px,env(safe-area-inset-left)) max(48px,calc(env(safe-area-inset-bottom)+24px)) max(16px,env(safe-area-inset-right));padding-top:max(20px,env(safe-area-inset-top))}
     header{text-align:center;margin-bottom:20px}
     .brand{display:flex;flex-direction:column;align-items:center;gap:6px}
@@ -147,7 +147,8 @@
     <h2>Setup</h2>
     <ol>
       <li>Install caps in the boat. <strong>This starts a 10-minute pairing window.</strong></li>
-      <li>Tap <strong>+ Add cap</strong> — the picker stays open to add multiple caps. Each cap blinks on connect and its firmware version is checked automatically.</li>
+      <li><strong>Wait until the cap stops blinking</strong> before trying to connect.</li>
+      <li>Tap <strong>+ Add cap</strong> — the selection window stays open so you can add multiple caps one at a time. Each cap blinks when connected.</li>
     </ol>
   </div>
 
@@ -201,8 +202,8 @@
   <section>
     <div class="toggle-row">
       <div class="toggle-label">
-        <strong>Firmware update (OTA)</strong>
-        Check version on connect and flash outdated caps when Go is tapped.
+        <strong>Software Update</strong>
+        Automatically checks if your caps are running the latest software. If an update is available, it will be installed when you tap Go.
       </div>
       <label class="toggle-switch">
         <input type="checkbox" id="otaToggle" checked>
@@ -507,7 +508,13 @@ async function startAddingCaps() {
         optionalServices: [NUS_SERVICE, 0x1800]
       });
       if (!caps.has(device.id)) connectCap(device);
-    } catch(err) { break; }
+    } catch(err) {
+      // Only stop the loop if the user explicitly cancelled (closed the window).
+      // Any other error (e.g. connection failed) should re-open the window.
+      if (err.name === 'NotFoundError') break;
+      // For other errors, small pause then reopen
+      await new Promise(function(r){setTimeout(r,500);});
+    }
   }
   addingCaps=false; updateControls();
 }
@@ -580,7 +587,7 @@ function updateControls() {
   var findBtn=document.getElementById('findBtn'), programBtn=document.getElementById('programBtn');
   var quitBtn=document.getElementById('quitBtn'), statusBtn=document.getElementById('statusBtn');
   var logBtn=document.getElementById('logBtn');
-  findBtn.textContent=addingCaps?'Adding... (cancel in picker)':'+ Add cap';
+  findBtn.textContent=addingCaps?'Adding... (close window to stop)':'+ Add cap';
   quitBtn.disabled=list.length===0;
   statusBtn.disabled=connCount===0;
   logBtn.disabled=connCount===0;
@@ -947,27 +954,27 @@ function fwState(state,title,meta){
 }
 
 async function fetchFirmware(){
-  fwState('loading','Checking firmware...','');
+  fwState('loading','Checking for updates...','');
   otaImageBytes=null;firmwareReady=false;updateControls();
   try{
     var head=await fetch(FIRMWARE_URL,{method:'HEAD'});
     if(!head.ok){fwState('error',head.status===404?'Firmware file not found':'Fetch failed (HTTP '+head.status+')',FIRMWARE_URL);return;}
     var filename=FIRMWARE_PATH.split('/').pop();
     var fwJulian=bcdToOrdinal(FIRMWARE_BUILD_DATE[0],FIRMWARE_BUILD_DATE[1],FIRMWARE_BUILD_DATE[2]);
-    fwState('good',filename+'  v'+REQUIRED_VERSION+'  \u2022  '+fwJulian,'Ready -- downloads when Go is tapped');
+    fwState('good','v'+REQUIRED_VERSION+'  \u2022  '+fwJulian,'Ready -- update will download when Go is tapped');
     firmwareReady=true;updateControls();
   }catch(err){fwState('error','Firmware check failed',err.message);}
 }
 
 async function downloadFirmware(){
-  fwState('loading','Downloading firmware...','');
+  fwState('loading','Downloading update...','');
   try{
     var res=await fetch(FIRMWARE_URL);
     if(!res.ok)throw new Error('HTTP '+res.status);
     otaImageBytes=new Uint8Array(await res.arrayBuffer());
     var filename=FIRMWARE_PATH.split('/').pop();
     var fwJulian=bcdToOrdinal(FIRMWARE_BUILD_DATE[0],FIRMWARE_BUILD_DATE[1],FIRMWARE_BUILD_DATE[2]);
-    fwState('good',filename+'  v'+REQUIRED_VERSION+'  \u2022  '+fwJulian,'Downloaded '+new Date().toLocaleTimeString());
+    fwState('good','v'+REQUIRED_VERSION+'  \u2022  '+fwJulian,'Downloaded '+new Date().toLocaleTimeString());
     return true;
   }catch(err){fwState('error','Download failed',err.message);return false;}
 }
@@ -1000,12 +1007,30 @@ document.getElementById('otaToggle').addEventListener('change',function(){
 /* -- Init ---------------------------------------------------------------- */
 fetchFirmware();
 renderCaps();
-window.addEventListener('beforeunload',function(){
-  caps.forEach(function(cap){
-    try{if(cap.rx&&cap.device?.gatt?.connected)bleWrite(cap.rx,new Uint8Array([0x71]));}catch(e){}
-    try{if(cap.device?.gatt?.connected)cap.device.gatt.disconnect();}catch(e){}
+// Use pagehide instead of beforeunload -- it fires more reliably on mobile
+// and on tab close. We use writeValueWithoutResponse (no round-trip ACK needed)
+// to maximise the chance the byte reaches the BC805M before the page tears down.
+// A clean disconnect follows immediately after -- the BC805M will relay 'q'
+// to the PIC on the UART even as the BLE link is dropping.
+function doCleanup() {
+  caps.forEach(function(cap) {
+    try {
+      if (cap.heartbeatTimer) clearInterval(cap.heartbeatTimer);
+      if (cap.rx && cap.device?.gatt?.connected) {
+        // writeValueWithoutResponse: fire-and-forget, no ACK wait,
+        // best available option in a synchronous teardown context.
+        if (typeof cap.rx.writeValueWithoutResponse === 'function') {
+          cap.rx.writeValueWithoutResponse(new Uint8Array([0x71]));
+        } else {
+          cap.rx.writeValue(new Uint8Array([0x71]));
+        }
+      }
+      if (cap.device?.gatt?.connected) cap.device.gatt.disconnect();
+    } catch(e) {}
   });
-});
+}
+window.addEventListener('beforeunload', doCleanup);
+window.addEventListener('pagehide', doCleanup);
 </script>
 </body>
 </html>

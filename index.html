@@ -178,26 +178,6 @@
     </div>
   </section>
 
-  <!-- CAP STATUS -->
-  <section>
-    <div class="section-label">Cap status</div>
-    <p style="margin:0 0 12px;font-size:14px;color:var(--ink-soft)">Reads live data from all connected caps simultaneously.</p>
-    <button class="btn btn-primary btn-block" id="statusBtn" disabled>Read status</button>
-    <div id="statusResults"></div>
-  </section>
-
-  <!-- LOG PULL -->
-  <section>
-    <div class="section-label">Pull log</div>
-    <label style="font-size:14px;font-weight:600;color:var(--ink);display:block;margin-bottom:6px">Customer name</label>
-    <input class="log-input" id="logCustomerName" type="text" placeholder="e.g. John Smith">
-    <button class="btn btn-primary btn-block" id="logBtn" disabled>Pull log from all caps</button>
-    <div class="log-progress" id="logProgress">
-      <div class="log-bar-wrap"><div class="log-bar-fill" id="logBarFill"></div></div>
-      <div class="log-bar-label" id="logBarLabel"></div>
-    </div>
-  </section>
-
   <!-- FIRMWARE UPDATE -->
   <section>
     <div class="toggle-row">
@@ -225,6 +205,27 @@
       </div>
     </div>
   </section>
+
+  <!-- CAP STATUS -->
+  <section>
+    <div class="section-label">Cap status</div>
+    <p style="margin:0 0 12px;font-size:14px;color:var(--ink-soft)">Reads live data from all connected caps simultaneously.</p>
+    <button class="btn btn-primary btn-block" id="statusBtn" disabled>Read status</button>
+    <div id="statusResults"></div>
+  </section>
+
+  <!-- LOG PULL -->
+  <section>
+    <div class="section-label">Pull log</div>
+    <label style="font-size:14px;font-weight:600;color:var(--ink);display:block;margin-bottom:6px">Customer name</label>
+    <input class="log-input" id="logCustomerName" type="text" placeholder="e.g. John Smith">
+    <button class="btn btn-primary btn-block" id="logBtn" disabled>Pull log from all caps</button>
+    <div class="log-progress" id="logProgress">
+      <div class="log-bar-wrap"><div class="log-bar-fill" id="logBarFill"></div></div>
+      <div class="log-bar-label" id="logBarLabel"></div>
+    </div>
+  </section>
+
 
 </main>
 <script>
@@ -809,7 +810,12 @@ function buildLogCsv(buf, customerName, capName, fwVersion, fwJulian) {
 function downloadCsv(csv, capName) {
   var safe=(capName||'log').replace(/[^a-z0-9_-]/gi,'_');
   var now=new Date();
-  var ts=now.getFullYear()+('0'+(now.getMonth()+1)).slice(-2)+('0'+now.getDate()).slice(-2);
+  var ts=now.getFullYear()+
+    ('0'+(now.getMonth()+1)).slice(-2)+
+    ('0'+now.getDate()).slice(-2)+'_'+
+    ('0'+now.getHours()).slice(-2)+
+    ('0'+now.getMinutes()).slice(-2)+
+    ('0'+now.getSeconds()).slice(-2);
   var filename='cse_log_'+safe+'_'+ts+'.csv';
   var blob=new Blob([csv],{type:'text/csv'});
   var url=URL.createObjectURL(blob);
